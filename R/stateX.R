@@ -1,7 +1,7 @@
 #' stateX
 #'
 #' The function \code{stateX()} provides the key features of the soil Moisture.
-#' 1- Compute the water amount of precipitation and snowmelt, for each level zone:
+#' 1- Compute the water amount (in mm) of precipitation and snowmelt, for each level zone:
 #' i-on non-glaciated soils
 #' ii- on glaciated soils
 #' iii- on glaciers

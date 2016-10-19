@@ -1,6 +1,8 @@
 # dddSoilMoisture
 
-This R-package focuses on processing the water volume present in the soil moisture zones in the hydrological model [ddd]{https://nexmodeling.github.io/ddd/}.
+[![Travis-CI Build Status](https://travis-ci.org/nexModeling/dddSoilMoisture.svg?branch=master)](https://travis-ci.org/nexModeling/dddSoilMoisture)
+
+This R-package focuses on processing the water volume present in the soil moisture zones in the hydrological model [ddd](https://nexmodeling.github.io/ddd/).
 
 ## Installation
 

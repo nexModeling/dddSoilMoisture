@@ -7,10 +7,11 @@
 init.soilMoisture(method = NULL, path = NULL, waterSoil = NULL,
   waterGlaciatedSoil = NULL, waterGlaciers = NULL, Z = NULL,
   isoil = NULL, gisoil = NULL, bisoil = NULL, swgt = NULL,
-  gwgt = NULL, snowfree = NULL, glacfrac = NULL)
+  gwgt = NULL, snowfree = NULL, glacfrac = NULL, SAVE = FALSE,
+  pathResults = "~/")
 }
 \arguments{
-\item{method}{method for the initialization, "load", "source", "manual", "procecessed"}
+\item{method}{method for the initialization, "load", manual", "procecessed"}
 
 \item{path}{directory where to get the files}
 
@@ -35,6 +36,10 @@ init.soilMoisture(method = NULL, path = NULL, waterSoil = NULL,
 \item{snowfree}{weights for input for each elevation zone}
 
 \item{glacfrac}{fraction of glaciers area}
+
+\item{SAVE}{Save the results, Boolean}
+
+\item{pathResults}{Path of the results. By default: $HOME}
 }
 \description{
 Initialize the information related to ssoil Moisture

@@ -1,6 +1,6 @@
-#' stateX
+#' stateX.soilMoisture
 #'
-#' The function \code{stateX()} provides the key features of the soil Moisture.
+#' The function \code{stateX.soilMoisture()} provides the key features of the soil Moisture.
 #' 1- Compute the water amount (in mm) of precipitation and snowmelt, for each level zone:
 #' i-on non-glaciated soils
 #' ii- on glaciated soils
@@ -20,7 +20,7 @@
 #' \dontrun{
 #' stateX()
 #' }
-stateX <-function(isoil,gisoil,bisoil=NULL,swgt,gwgt,snowfree,glacfrac){
+stateX.soilMoisture <-function(isoil,gisoil,bisoil=NULL,swgt,gwgt,snowfree,glacfrac){
 
   waterSoil <- ifelse(!is.null(isoil),waterAmount(isoil=isoil,wgt=swgt),0)
   waterGlaciatedSoil <- ifelse(!is.null(isoil),waterAmount(isoil=isoil,wgt=gwgt),0)

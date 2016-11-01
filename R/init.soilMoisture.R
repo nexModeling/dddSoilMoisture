@@ -14,8 +14,6 @@
 #' @param gwgt weights for input for each elevation zone
 #' @param snowfree weights for input for each elevation zone
 #' @param glacfrac fraction of glaciers area
-#' @param SAVE Save the results, Boolean
-#' @param pathResults Path of the results. By default: $HOME
 #' @keywords soilMoisture
 #' @export
 #' @examples
@@ -23,48 +21,33 @@
 #' init.soilMoisture()
 #' }
 init.soilMoisture <-function(method=NULL,path=NULL,waterSoil=NULL,waterGlaciatedSoil=NULL,waterGlaciers=NULL,Z=NULL,
-               isoil=NULL,gisoil=NULL,bisoil=NULL,swgt=NULL,gwgt=NULL,snowfree=NULL,glacfrac=NULL,SAVE=FALSE,pathResults="~/"){
+               isoil=NULL,gisoil=NULL,bisoil=NULL,swgt=NULL,gwgt=NULL,snowfree=NULL,glacfrac=NULL){
 
   soilMoisture <- switch(method,
-    "manual"    = init.manual(waterSoil=waterSoil,waterGlaciatedSoil=waterGlaciatedSoil,waterGlaciers=waterGlaciers,Z=Z,SAVE=SAVE,pathResults=pathResults),
-    "processed" = init.parocessed(isoil=isoil,gisoil=gisoil,bisoil=bisoil,swgt=swgt,gwgt=gwgt,snowfree=snowfree,glacfrac=glacfrac,SAVE=SAVE,pathResults=pathResults),
-    "load"      = init.load(path=path,SAVE=SAVE,pathResults=pathResults),
+    "manual"    = init.manual(waterSoil=waterSoil,waterGlaciatedSoil=waterGlaciatedSoil,waterGlaciers=waterGlaciers,Z=Z),
+    "processed" = init.parocessed(isoil=isoil,gisoil=gisoil,bisoil=bisoil,swgt=swgt,gwgt=gwgt,snowfree=snowfree,glacfrac=glacfrac),
+    "load"      = init.load(path=path),
     (message=paste0("Invalid method:", method,".")))
 
   return(soilMoisture)
 }
 
-init.manual <- function(waterSoil,waterGlaciatedSoil,waterGlaciers,Z,SAVE,pathResults){
+init.manual <- function(waterSoil,waterGlaciatedSoil,waterGlaciers,Z){
    soilMoisture <- list(waterSoil=waterSoil,
                waterGlaciatedSoil=waterGlaciatedSoil,
                waterGlaciers=waterGlaciers,
                Z=Z)
-  if (SAVE){
-    pathInit <- paste0(pathResults,"init/")
-    dir.create(pathInit, showWarnings = FALSE)
-    do.call("save", list(obj="soilMoisture", file=paste0(pathInit,"soilMoisture.rda")))
-  }
   return(soilMoisture)
 }
 
 init.load <- function(path){
   load(paste0(path,"soilMoisture.rda"))
-  if (SAVE){
-    pathInit <- paste0(pathResults,"init/")
-    dir.create(pathInit, showWarnings = FALSE)
-    do.call("save", list(obj="soilMoisture", file=paste0(pathInit,"soilMoisture.rda")))
-  }
-  return(soilMoisture)
-}
-
-init.source <- function(path){
-  source(paste0(path,"soilMoisture.R"),local=TRUE)
   return(soilMoisture)
 }
 
 init.processed <-function(isoil,gisoil,bisoil,swgt,gwgt,snowfree,glacfrac){
   if ( (!is.null(isoil)) && (!is.null(gisoil)) && (!is.null(swgt)) && (!is.null(gwgt)) && (!is.null(snowfree)) && (!is.null(glacfrac)) ) {
-    res <- stateX(isoil=isoil,gisoil=gisoil,bisoil=bisoil,swgt=swgt,gwgt=gwgt,snowfree=snowfree,glacfrac=glacfrac)
+    res <- stateX.soilMoisture(isoil=isoil,gisoil=gisoil,bisoil=bisoil,swgt=swgt,gwgt=gwgt,snowfree=snowfree,glacfrac=glacfrac)
     return(res)
   } else stop("NULL arguments in init.processed Soil Moisture")
 

@@ -10,7 +10,7 @@ init.soilMoisture(method = NULL, path = NULL, waterSoil = NULL,
   gwgt = NULL, snowfree = NULL, glacfrac = NULL)
 }
 \arguments{
-\item{method}{method for the initialization, "load", "source", "manual", "procecessed"}
+\item{method}{method for the initialization, "load", manual", "procecessed"}
 
 \item{path}{directory where to get the files}
 

@@ -25,7 +25,7 @@ init.soilMoisture <-function(method=NULL,path=NULL,waterSoil=NULL,waterGlaciated
 
   soilMoisture <- switch(method,
     "manual"    = init.manual(waterSoil=waterSoil,waterGlaciatedSoil=waterGlaciatedSoil,waterGlaciers=waterGlaciers,Z=Z),
-    "processed" = init.parocessed(isoil=isoil,gisoil=gisoil,bisoil=bisoil,swgt=swgt,gwgt=gwgt,snowfree=snowfree,glacfrac=glacfrac),
+    "processed" = init.processed(isoil=isoil,gisoil=gisoil,bisoil=bisoil,swgt=swgt,gwgt=gwgt,snowfree=snowfree,glacfrac=glacfrac),
     "load"      = init.load(path=path),
     (message=paste0("Invalid method:", method,".")))
 
@@ -41,7 +41,10 @@ init.manual <- function(waterSoil,waterGlaciatedSoil,waterGlaciers,Z){
 }
 
 init.load <- function(path){
-  load(paste0(path,"soilMoisture.rda"))
+  env <- environment()
+  path <- normalizePath(file.path(path,"soilMoisture.rda"),mustWork = FALSE)
+  load(path, envir=env)
+  soilMoisture <- get("soilMoisture",envir = env)
   return(soilMoisture)
 }
 

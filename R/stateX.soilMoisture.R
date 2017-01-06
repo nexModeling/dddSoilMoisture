@@ -33,12 +33,7 @@ stateX.soilMoisture <-function(isoil,gisoil,bisoil=NULL,swgt,gwgt,snowfree,glacf
   # rem: gwgt because it is going to be scaled by glacfrac later on
 
   # waterVolume: input from rain, snow and glaciers
-   Z <- waterVolume(waterSoil=waterSoil,waterGlaciatedSoil=waterGlaciatedSoil,waterGlaciers=waterGlaciers,waterBogs=waterBogs,glacfrac=glacfrac)
-
-  cat("gisoil: ", gisoil, "\n" )
-  cat("gwgt: ", gwgt, "\n" )
-  cat("snowfree: ", snowfree, "\n" )
-  cat("waterGlaciers: ", waterGlaciers, "\n" )
+  Z <- waterVolume(waterSoil=waterSoil,waterGlaciatedSoil=waterGlaciatedSoil,waterGlaciers=waterGlaciers,waterBogs=waterBogs,glacfrac=glacfrac)
 
   results <- list(waterSoil = waterSoil,
                   waterGlaciatedSoil = waterGlaciatedSoil,

@@ -24,7 +24,7 @@ stateX.soilMoisture <-function(isoil,gisoil,bisoil=NULL,swgt,gwgt,snowfree,glacf
 
   waterSoil <- ifelse(!is.null(isoil),waterAmount(isoil=isoil,wgt=swgt),0)
   waterGlaciatedSoil <- ifelse(!is.null(isoil),waterAmount(isoil=isoil,wgt=gwgt),0)
-  waterGlaciers <- ifelse(!is.null(gisoil),waterAmount(isoil=gisoil,wgt=gwgt)*snowfree,0)
+  waterGlaciers <- ifelse(!is.null(gisoil),waterAmount(isoil=gisoil,wgt=gwgt*snowfree),0)
 
   bisoil <- NULL
   waterBogs <- ifelse(!is.null(bisoil),waterAmount(isoil=bisoil,wgt=swgt),0)
@@ -34,6 +34,11 @@ stateX.soilMoisture <-function(isoil,gisoil,bisoil=NULL,swgt,gwgt,snowfree,glacf
 
   # waterVolume: input from rain, snow and glaciers
    Z <- waterVolume(waterSoil=waterSoil,waterGlaciatedSoil=waterGlaciatedSoil,waterGlaciers=waterGlaciers,waterBogs=waterBogs,glacfrac=glacfrac)
+
+  cat("gisoil: ", gisoil, "\n" )
+  cat("gwgt: ", gwgt, "\n" )
+  cat("snowfree: ", snowfree, "\n" )
+  cat("waterGlaciers: ", waterGlaciers, "\n" )
 
   results <- list(waterSoil = waterSoil,
                   waterGlaciatedSoil = waterGlaciatedSoil,
